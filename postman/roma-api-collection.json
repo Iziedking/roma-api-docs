@@ -1,0 +1,141 @@
+{
+  "info": {
+    "name": "ROMA API Collection",
+    "description": "Complete collection for ROMA API endpoints",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "https://api.izieroma.xyz",
+      "type": "string"
+    },
+    {
+      "key": "api_key",
+      "value": "sk_live_your_key_here",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Create Execution",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "X-API-Key",
+            "value": "{{api_key}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"goal\": \"What is artificial intelligence?\",\n  \"max_depth\": 3,\n  \"config_profile\": \"general\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/v1/executions",
+          "host": ["{{base_url}}"],
+          "path": ["api", "v1", "executions"]
+        }
+      }
+    },
+    {
+      "name": "Get Execution Status",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "X-API-Key",
+            "value": "{{api_key}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/v1/executions/{{execution_id}}/status",
+          "host": ["{{base_url}}"],
+          "path": ["api", "v1", "executions", "{{execution_id}}", "status"]
+        }
+      }
+    },
+    {
+      "name": "List Executions",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "X-API-Key",
+            "value": "{{api_key}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/v1/executions?limit=20&status=completed",
+          "host": ["{{base_url}}"],
+          "path": ["api", "v1", "executions"],
+          "query": [
+            {
+              "key": "limit",
+              "value": "20"
+            },
+            {
+              "key": "status",
+              "value": "completed"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get Execution Details",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "X-API-Key",
+            "value": "{{api_key}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/v1/executions/{{execution_id}}",
+          "host": ["{{base_url}}"],
+          "path": ["api", "v1", "executions", "{{execution_id}}"]
+        }
+      }
+    },
+    {
+      "name": "Cancel Execution",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "X-API-Key",
+            "value": "{{api_key}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/v1/executions/{{execution_id}}/cancel",
+          "host": ["{{base_url}}"],
+          "path": ["api", "v1", "executions", "{{execution_id}}", "cancel"]
+        }
+      }
+    },
+    {
+      "name": "Get Execution DAG",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "X-API-Key",
+            "value": "{{api_key}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/v1/executions/{{execution_id}}/dag",
+          "host": ["{{base_url}}"],
+          "path": ["api", "v1", "executions", "{{execution_id}}", "dag"]
+        }
+      }
+    }
+  ]
+}
